@@ -2,27 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MY APP</title>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Mascota24: Nuevos vendedores</title>  
 </head>
-<body>
-  May Node and Express be with you.
+<body style="background-color: #4B1649;">
 
-  <ul class="vendedores">
-  <% for(var i=0; i<vendedores.length; i++) {%>
-    <li class="vendedore">
-      <span><%= vendedores[i].name %></span>
-      <span><%= vendedores[i].id %></span>
-    </li>
-  <% } %>
+  <h2 style="color: #ff9900;">Carga de vendedores nuevos de Mascota24</h4>
+  <span style="color: #ff9900;font-weight: bold;">Lista vendedores cargados:</span>
+  <ul style="color: #fff;">
+    <div style="padding: 10px;">
+      <span style="min-width: 15%;display: inline-block;font-weight: bold;text-decoration: underline;font-size: 20px;">Nombre</span>
+      <span style="font-weight: bold;text-decoration: underline;font-size: 20px;">ID</span>
+    </div>
+    <% for(var i=0; i<vendedores.length; i++) {%>
+      <li style="padding: 10px;text-decoration: none;list-style: none;">
+        <span style="min-width: 15%;display: inline-block;"><%= vendedores[i].name %></span>
+        <span><%= vendedores[i].id %></span>
+      </li>
+    <% } %>
   </ul>
 
-  <form action="/vendedores" method="POST">
-    <input type="text" placeholder="name" name="name">
-    <input type="text" placeholder="id" name="id">
-    <button type="submit">Submit</button>
+  <form action="/vendedores" method="POST" style="border: 1px solid #ff9900;padding: 30px;border-radius: 15px;">
+    <input type="text" placeholder="Nombre" name="name" style="border-radius: 20px;
+    border: 1px solid #E3A141 !important;
+    background-color: #460547 !important;
+    color: #fff;
+    padding: 10px;">
+    <input type="text" placeholder="ID" name="id" style="border-radius: 20px;
+    border: 1px solid #E3A141 !important;
+    background-color: #460547 !important;
+    color: #fff;
+    padding: 10px;">
+    <button type="submit" style="border-radius: 20px;border: 1px solid #009546 !important;background-color: #009546 !important;color: #fff;height: 40px !important;width: 120px;">Cargar</button>
   </form>
 
-  <div>
+  <!--div>
     <h2>Replace last quote written by Yoda with a quote written by Darth Vadar</h2>
     <button id="update"> Darth Vadar invades! </button>
   </div>
@@ -33,7 +48,7 @@
   <div>
     <h2>getVendedor</h2>
     <button id="getVendedor">Get vendedor</button>
-  </div>
+  </div-->
   <script src="main.js"></script>
 </body>
 </html>

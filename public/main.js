@@ -2,7 +2,7 @@ var update = document.getElementById('update')
 var del = document.getElementById('delete')
 var getVendedor = document.getElementById('getVendedor')
 
-update.addEventListener('click', function () {
+/*update.addEventListener('click', function () {
     fetch('vendedores', {
       method: 'put',
       headers: {'Content-Type': 'application/json'},
@@ -54,4 +54,4 @@ getVendedor.addEventListener('click', function () {
     console.log(data)
     //window.location.reload(true)
   })
-})
+})*/

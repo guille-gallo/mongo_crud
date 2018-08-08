@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="favicon.ico" type="image/x-icon">
   <title>Mascota24: Nuevos vendedores</title>  
+  <style media="screen" type="text/css">
+.inputSwitch {
+    display: inline-block;
+    min-width: 15%;
+  }
+    </style>
+  
 </head>
 <body style="background-color: #4B1649;">
 
@@ -17,8 +24,13 @@
     </div>
     <% for(var i=0; i<vendedores.length; i++) {%>
       <li style="padding: 10px;text-decoration: none;list-style: none;">
-        <span style="min-width: 15%;display: inline-block;"><%= vendedores[i].name %></span>
-        <span><%= vendedores[i].id %></span>
+          
+          <div class="inputSwitch">
+            <span><%= vendedores[i].name %></span><input />
+          </div>
+          <div class="inputSwitch">
+            <span class="id"><%= vendedores[i].id %></span><input />
+          </div>
       </li>
     <% } %>
   </ul>
@@ -49,6 +61,10 @@
     <h2>getVendedor</h2>
     <button id="getVendedor">Get vendedor</button>
   </div-->
+  <script
+			  src="https://code.jquery.com/jquery-2.2.4.js"
+			  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+			  crossorigin="anonymous"></script>
   <script src="main.js"></script>
 </body>
 </html>

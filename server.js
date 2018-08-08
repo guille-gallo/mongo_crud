@@ -47,20 +47,13 @@ app.get('/vendedores/:name', (req, res) => {
   })
 })
 
-app.put('/vendedores', (req, res) => {
-  db.collection('vendedores')
-  .findOneAndUpdate({name: 'Yoda'}, {
-    $set: {
-      name: req.body.name,
-      id: req.body.id
-    }
-  }, {
-    sort: {_id: -1},
-    upsert: true
-  }, (err, result) => {
-    if (err) return res.send(err)
-    res.send(result)
-  })
+app.put('/vendedores/:name', (req, res) => {
+  console.log("req.body.name: ", req.body.name)
+  console.log("req.body.value: ", req.body.value)
+  db.collection('vendedores').findOneAndUpdate({name: req.body.value}, {$set: {name: req.body.name}}, {upsert: true}, function(err,doc) {
+    if (err) { throw err; }
+    else { console.log("Updated", doc); }
+  });  
 })
 
 app.delete('/vendedores', (req, res) => {

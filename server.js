@@ -7,6 +7,10 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set('view engine', 'ejs');
 app.use(express.static('public'))
 app.use(bodyParser.json())
+app.set('view engine', 'ejs')
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(express.static('public'))
 
 var db
 MongoClient.connect('mongodb://guille-gallo:cocuchA0303@ds111562.mlab.com:11562/vendedores_nuevos_mascota24', { useNewUrlParser: true }, (err, client) => {
@@ -18,34 +22,36 @@ MongoClient.connect('mongodb://guille-gallo:cocuchA0303@ds111562.mlab.com:11562/
 })
 
 
-
-app.set('view engine', 'ejs')
-app.use(bodyParser.urlencoded({extended: true}))
-app.use(bodyParser.json())
-app.use(express.static('public'))
-
-
-
-// Note: request and response are usually written as req and res respectively.
 app.get('/', (req, res) => {
-  db.collection('quotes').find().toArray((err, result) => {
+  db.collection('vendedores').find().toArray((err, result) => {
     if (err) return console.log(err)
-    res.render('index.ejs', {quotes: result})
+    res.render('index.ejs', {vendedores: result})
   })
 })
-app.post('/quotes', (req, res) => {
-  db.collection('quotes').save(req.body, (err, result) => {
+
+app.post('/vendedores', (req, res) => {
+  db.collection('vendedores').save(req.body, (err, result) => {
     if (err) return console.log(err)
     console.log('saved to database')
     res.redirect('/')
   })
 })
-app.put('/quotes', (req, res) => {
-  db.collection('quotes')
+
+app.get('/vendedores/:name', (req, res) => {
+  console.log("ID: ", req.params.id)
+  var query = { name: req.params.name };
+  db.collection('vendedores').find(query).toArray((err, result) => {
+    if (err) return console.log(err)
+    console.log("result: ", result)
+  })
+})
+
+app.put('/vendedores', (req, res) => {
+  db.collection('vendedores')
   .findOneAndUpdate({name: 'Yoda'}, {
     $set: {
       name: req.body.name,
-      quote: req.body.quote
+      id: req.body.id
     }
   }, {
     sort: {_id: -1},
@@ -55,8 +61,9 @@ app.put('/quotes', (req, res) => {
     res.send(result)
   })
 })
-app.delete('/quotes', (req, res) => {
-  db.collection('quotes').findOneAndDelete({name: req.body.name},
+
+app.delete('/vendedores', (req, res) => {
+  db.collection('vendedores').findOneAndDelete({name: req.body.name},
   (err, result) => {
     if (err) return res.send(500, err)
     res.send({message: 'A darth vadar quote got deleted'})

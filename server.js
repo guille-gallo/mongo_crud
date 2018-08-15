@@ -14,7 +14,6 @@ app.use(express.static('public'))
 
 var db
 MongoClient.connect('', { useNewUrlParser: true }, (err, client) => {
-//MongoClient.connect('mongodb://localhost/vendedores_nuevos_mascota24', { useNewUrlParser: true }, (err, client) => {
 if (err) return console.log(err)
   db = client.db('') // whatever your database name is
   app.listen(3003, () => {

@@ -13,10 +13,9 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 
 var db
-MongoClient.connect('mongodb://guille-gallo:cocuchA0303@ds111562.mlab.com:11562/vendedores_nuevos_mascota24', { useNewUrlParser: true }, (err, client) => {
-//MongoClient.connect('mongodb://localhost/vendedores_nuevos_mascota24', { useNewUrlParser: true }, (err, client) => {
+MongoClient.connect('', { useNewUrlParser: true }, (err, client) => {
 if (err) return console.log(err)
-  db = client.db('vendedores_nuevos_mascota24') // whatever your database name is
+  db = client.db('') // whatever your database name is
   app.listen(3003, () => {
     console.log('listening on 3003')
   })
